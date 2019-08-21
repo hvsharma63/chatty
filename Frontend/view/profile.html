@@ -1,0 +1,440 @@
+<!-- 
+  file : profile.html
+  v1.0
+  Desc : Show and update data for logged in user
+  Developed By : Ishan Bhatt
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Set favicon in tab -->
+  <link rel="icon" href="chatty.png">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Toast Alert CSS -->
+  <link rel="stylesheet" href="public/toast-alert/css/mk-notifications.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="public/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="public/dist/css/skins/_all-skins.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Croppie css -->
+  <link rel="stylesheet" href="public/Croppie-2.6.2/croppie.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="public/css/style.css">
+
+  <title>Chatty</title>
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini" user_id="0">
+
+<!-- Site wrapper -->
+  <div class="wrapper">
+      <header class="main-header">
+          <!-- Logo -->
+          <a href="/" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>CY</b></span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Chatty</b></span>
+          </a>
+          <!-- Header Navbar: style can be found in header.less -->
+          <nav class="navbar navbar-static-top">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <p class="nav-custom-title">Profile</p>
+    
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <!-- Notifications: style can be found in dropdown.less -->
+                <li class="dropdown notifications-menu">
+                  <a href="#" class="dropdown-toggle" id="req_notification">
+                    <i class="fa fa-bell-o"  style="font-size:20px;"></i>
+                    <span class="label label-warning" id="notification-count"></span>
+                  </a>
+                </li>
+    
+                <li class="dropdown notifications-menu create-group">
+                    <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-default" id="create-group" title="Create Group">
+                        <i class="fa fa-plus-circle plus" style="font-size:20px;"></i>
+                    </a>
+                </li>
+    
+                <div class="modal fade" id="modal-default">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <form method="POST">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <h4 class="modal-title" style="text-align:center;"><b>Create Group</b></h4>
+                          
+                          <input type="text" name="grpName" id="grpName" class="grpName" placeholder="Enter Group Name" />
+                          <!-- <input type="file" name="grpImg" id="grpImg" class="custom-file-input grpImg"> -->
+                          <p class="error"></p>
+                        </div>
+                        <div class="modal-body friendsForGroup">
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                          <button type="button" id="save-group" class="btn btn-primary" >Create</button>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="" class="user-image" id="user_img1" alt="User Image">
+                    <span class="hidden-xs logged-in-user"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                      <img src="" id="user_img2" class="img-circle" alt="User Image">
+    
+                      <p class="logged-in-user"></p>
+                    </li>
+                    <!-- Menu Body -->
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <a href="/userProfile" class="btn btn-default btn-flat" id="user_profile">Profile</a>
+                      </div>
+                      <div class="pull-right">        
+                        <a href="#" class="btn btn-default btn-flat logout">Sign out</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+      </header>
+
+    <!-- =============================================== -->
+
+    <!-- Sidebar -->
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="" class="img-circle" id="user_img3" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p class="logged-in-user"></p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">MAIN NAVIGATION</li>
+          <li class="">
+            <a href="/users">
+              <i class="fa fa-dashboard"></i> 
+              <span>Dashboard</span>
+            </a>
+          </li>  
+        </ul>
+      </section>
+    </aside> <!-- /Sidebar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          User Profile
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="/users"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+          <li class="active">User Profile</li>
+        </ol>
+      </section>
+    
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-md-3">
+  
+            <!-- Profile Image -->
+            <div class="box box-primary">
+              <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="" alt="User profile picture">
+  
+                <h3 class="profile-username text-center"></h3>
+                <ul class="list-group list-group-unbordered">
+                  <li class="list-group-item">
+                    <b>Friends</b> <a class="pull-right friednsCount"></a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
+              </ul>
+              <div class="tab-content">
+                <div class="active tab-pane" id="settings">
+                  <form class="form-horizontal" method="post" id="updateForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">First Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" onfocusout="validateFname(this);">
+                        <small id="error1"></small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputName" class="col-sm-2 control-label">Last Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" onfocusout="validateLname(this);">
+                        <small id="error2"></small>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                      </div>
+                    </div>
+
+                    <div class="form-group cityHide">
+                      <label for="inputSkills" class="col-sm-2 control-label">City</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="city" name="city" placeholder="City" onfocusout="validateCity(this);">
+                        <small id="error3"></small>
+                      </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="img-upload" class="col-sm-2 control-label" >Upload Image</label>
+                        <div class="col-sm-10 upload-btn-wrapper">                            
+                            <input type="file" class="form-control"  name="file" id="img_upload">
+                              <button class="custom-file-btn">Choose a file</button>
+                          </a>
+                        </div>    
+                    </div>
+
+                    <div class="form-group">
+                      <img id="my-image" src=""/>
+                      <button type="button" class="col-sm-2 btn btn-warning" style="margin-left: 40px; width: 90px;" id="use">Crop It</button>
+                      <img id="result" src=""  name="main" style="margin-left: 10px;">
+                      <input type="hidden" name="imagecrop1" id="imagecrop1"/>
+                    </div> -->
+
+                    
+                    <div class="form-group">
+                      <label for="inputSkills" class="col-sm-2 control-label">Profile Picture</label>
+
+                      <div class="col-sm-10">
+                        <!--  <input type="file" name="file" id="fileupload"/> -->
+                        <label class="cabinet center-block">
+                          <figure>
+                            <img src="" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                            <figcaption><i class="fa fa-camera"></i></figcaption>
+                          </figure>
+                          <input type="file" class="item-img file center-block" name="file" id="fileupload"/>
+                          <input type="hidden" name="imagecrop1" id="imagecrop1"/>
+                        </label>
+                      </div>
+                      <small class="validation1"  id="error" ></small>   
+                    </div>
+
+                    <div class="modal fade" id="cropImagePop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <!-- Header -->
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                            </h4>
+                          </div>
+
+                          <!-- Body -->
+                          <div class="modal-body">
+                              <div id="upload-demo" class="center-block"></div>
+                          </div>
+                          <!-- Footer -->
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" id="cropImageBtn" class="btn btn-primary">Crop</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="col-sm-offset-10 col-sm-2">
+                        <input type="button" class="btn btn-primary" style="width:100px;" id="submitUpdateForm" name="submitForm" value="Update">
+                      </div>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- /.section-->
+    </div>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery 3 -->
+  <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="public/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- Sweetalerts -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Socket -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Croppie Js -->
+  <script src="public/Croppie-2.6.2/croppie.js"></script>
+  <!-- Toast Alert -->
+  <script src="public/toast-alert/js/mk-notifications.min.js"></script>
+  <!-- Emoji CDN -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.js"></script>
+  <!-- jQuery Validator -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script> 
+  <!-- AdminLTE App -->
+  <script src="public/dist/js/adminlte.min.js"></script>
+  <!-- Connection JS -->
+  <script src="public/js/connection.js"></script>
+  <!-- Socket -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Custom validation -->
+  <script src="public/js/update-validation.js"></script>
+  <!-- Custom JS -->
+  <script src="public/js/custom-ajax.js"></script>
+  <!-- main JS -->
+  <script src="public/js/main.js"></script>
+</body>
+</html>
+
+<script>
+
+    $(function(){
+      var grpName = localStorage.getItem('groupName');
+      var grpName = {
+          grpName : grpName
+      };
+      
+      $.ajax({
+        async: true,
+        crossDomain: true,
+        method : "POST",
+        url : url+"updateGroupOfflineStatus",
+        "headers": {
+          "authorization": token,
+          "cache-control": "no-cache",               
+        },
+        contentType : "application/JSON",
+        data : JSON.stringify(grpName)
+      }).done(function(res){
+      }).fail(function(e, s, t){
+        console.log("Error : " +e);
+      });
+    })
+    // Start upload preview image
+    var image = localStorage.getItem("loggedUserImg");
+    $(".gambar").attr("src", image);
+    var uploadCrop,resp,tempFilename,rawImg,imageId;
+    function readFile(input) {
+      if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+        $('.upload-demo').addClass('ready');
+        $('#cropImagePop').modal('show');
+              rawImg = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        } else {
+          var mkConfig = {
+            positionY: 'bottom',
+            positionX: 'right',
+            max: 5,
+            scrollable: true
+          };
+        
+          mkNotifications(mkConfig);
+        
+          mkNoti(
+            'FileReader API Error.',
+            "Sorry - you're browser doesn't support the FileReader API.",
+            {
+              status:'danger'
+            }
+          );
+      }
+    }
+    
+    //Crop
+    uploadCrop = $('#upload-demo').croppie({
+      viewport: {
+        width: 100,
+        height: 100, 
+      },
+      enforceBoundary: false,
+      enableExif: true
+    });
+    
+    //Open modal after select an image
+    $('#cropImagePop').on('shown.bs.modal', function(){
+      
+      uploadCrop.croppie('bind', {
+            url: rawImg
+          }).then(function(){
+            console.log('jQuery bind complete');
+          });
+    });
+    
+    //Set image on chanhe
+    $('.item-img').on('change', function () { 
+      imageId = $(this).data('id'); tempFilename = $(this).val();
+      $('#cancelCropBtn').data('id', imageId); readFile(this); 
+    });
+
+    //Crop image on click of crop button
+    $('#cropImageBtn').on('click', function (ev) {
+      uploadCrop.croppie('result', {
+        type: 'base64',
+        format: 'jpeg',
+        size: {width: 100, height: 100}
+      }).then(function (resp) {
+        $('#item-img-output').attr('src', resp);
+        $('#cropImagePop').modal('hide');
+        $("#imagecrop1").val(resp);
+      });
+    });
+</script>

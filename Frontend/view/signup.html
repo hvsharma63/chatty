@@ -1,0 +1,176 @@
+<!-- 
+    file : index.html
+    v1.0
+    Desc : It contains form and post data to Node API
+    Developed By : Ishan Bhatt
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Set favicon in tab -->
+    <link rel="icon" href="chatty.png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.3/css/mdb.min.css" rel="stylesheet">
+    <!-- Toast Alert CSS -->
+    <link rel="stylesheet" href="../public/toast-alert/css/mk-notifications.min.css">
+    <!-- Croppie css -->
+    <link rel="stylesheet" href="../public/Croppie-2.6.2/croppie.css">
+    <!-- jQuery Datepciker CSSs -->
+    <link href = "../public/datepicker/css/jquery-ui.css" rel = "stylesheet">
+    <link href="../public/datepicker/css/style.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/style.css">
+
+    <title>Chatty | Sign Up</title>
+ </head>
+ <body>
+ 
+     <!-- Preloader -->
+     <div id="preloader" class="preloader">
+         <div id="loader"></div>
+     </div> <!-- /Preloader -->
+ 
+     <!-- Form -->
+     <div class="container">
+         <h4 class="custom-form-title text-center" style="margin-top : 20px; font-weight: bold;">Chatty - Sign Up</h4>
+         <a href="/" style="text-decoration:none; color: #3c8dbc; font-size: 20px; float: right;">Already a user ?</a>
+         <div class="custom-form">
+             <form method="post" id="myForm" enctype="multipart/form-data">
+                 <div class="row" style="margin-top : 40px;">
+                     <div class="col-md-6">
+                         <!-- First Name -->
+                        <div class="form-group">
+                                <label for="fname" >First Name</label>
+                                <input type="text" class="form-control" name="fname" id="fname" data-validation="length" data-validation-length="min3" onfocusout="validateFname(this); isChecked(this)" onkeypress="return blockSpace(event);" required="required">
+                                <small id="error1"></small>
+                            </div>
+            
+                            <!-- Last Name -->
+                            <div class="form-group">
+                                <label for="lname" >Last Name</label>
+                                <input type="text" class="form-control" name="lname" id="lname" data-validation="length" data-validation-length="min3" onfocusout="validateLname(this); isChecked(this)" onkeypress="return blockSpace(event);">
+                                <small id="error2"></small>
+                            </div>
+            
+                            <!-- City -->
+                            <div class="form-group">
+                                <label for="city" >City</label>
+                                <input type="text" class="form-control" name="city" id="city" data-validation="length" data-validation-length="min2" onkeypress="return blockSpace(event)" onfocusout="validateCity(this); isChecked(this)">
+                                <small id="error3"></small>
+                            </div>
+            
+                            <!-- Phone Numbers -->
+                            <div class="form-group">
+                                <label for="mobile-number" >Phone Number</label>
+                                <input type="text" class="form-control" name="mobile_number" id="mobile_number" onfocusout="return isChecked(this)"  data-validation="custom" data-validation-regexp="^((\+){1}91){1}[1-9]{1}[0-9]{9}$">
+                                <small id="error4"></small>
+                            </div>
+            
+                            <!-- Birth Date -->
+                            <div class="form-group">
+                                <label for="datepicker" >Birthdate</label>
+                                <input type = "text" class="form-control" name="datepicker_validate" id="datepicker_validate" placeholder="dd-mm-yyyy" onfocusout="isChecked(this)" data-validation="required" data-validation-error-msg="Enter Password">
+                                <small id="datepicker-error"></small>
+                            </div> 
+                     </div>
+                         
+
+                    <div class="col-md-6">
+                        <!-- Email -->
+                        <div class="form-group">
+                                <label for="email" >Email</label>
+                                <input type="email" class="form-control" name="email" id="email" onfocusout="isChecked(this)"  data-validation="email">
+                                <small id="error5"></small>
+                        </div>
+    
+                        <!-- Username -->
+                        <div class="form-group">
+                            <label for="username" >Username</label>
+                            <input type="text" class="form-control" name="username" data-validation="length" data-validation-length="min3" onkeypress="return blockSpace(event);" id="Username" onfocusout="isChecked(this)">
+                            <small id="usernameError"></small>
+                        </div>
+        
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="pwd" >Password</label>
+                            <input type="password" class="form-control" name="pwd" id="pwd" onfocusout="validatePassword(this); isChecked(this)"  title="Password should contain minimum 8 to 12 characters, atleast 1 numeric value and 2 special characters">
+                            <small id="error6"></small>
+                        </div>
+        
+                        <!-- Confirm Password -->
+                        <div class="form-group">
+                            <label for="confirm_psw" >Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm_psw" onfocusout="validateConfirmPassword(this); isChecked(this)">
+                            <small id="error7"></small>
+                        </div>
+        
+                        <!-- Image Upload -->
+                        <div class="form-group">
+                            <label for="img-upload" >Upload Image</label>
+                            <input type="file" class="form-control" name="file" id="img_upload">
+                            <small id="error8"></small>
+                        </div>
+        
+                        <!-- Cropped Image -->
+                        <img id="my-image" src="" />
+                        <button type="button" id="use" class="btn btn-warning" style="width:21%;">Upload</button>
+                        <img id="result" src="">
+                        <input type="hidden" name="imagecrop" id="imagecrop"/>
+                    </div>
+                    </div>
+                 
+                 <input type="button" class="btn btn-primary btn-raised" name="submit" id="submit-form" value="Submit" disabled="disabled">
+                 <input type="reset" class="btn btn-default" value="Reset" onclick="window.location.reload();">      
+             </form>
+         </div>
+     </div> <!-- /Form -->
+ 
+         
+     
+    <!-- Bootstrap Scripts -->
+    <script src="../public/js/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <!-- Popper JS -->
+    <script src="../public/js/popper.js" crossorigin="anonymous"></script>
+    <!-- Material Design JS -->
+    <script src="../public/js/bootstrap-material-design.js" crossorigin="anonymous"></script>
+    <!-- Datepciker -->
+    <script src="../public/js/jquery-1.12.4.js"></script>
+    <!-- Datepicke ui js -->
+    <script src="../public/js/jquery-ui.js"></script>
+    <!-- jQuery Validator -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script> 
+    <!-- Toast Alert -->
+    <script src="../public/toast-alert/js/mk-notifications.min.js"></script>
+    <!-- Croppie Js -->
+    <script src="../public/Croppie-2.6.2/croppie.js"></script>
+    <!-- Connection JS -->
+    <script src="public/js/connection.js"></script>
+    <!-- Custom validations Script -->
+    <script type="text/javascript" src="../public/js/validation.js"></script>
+    <!-- Login JS -->
+    <script type="text/javascript" src="../public/js/login.js"></script>
+ </body>
+ </html>
+ 
+ <script>
+     // Calling validate function
+     $.validate({
+         error:'red',
+         errorMessagePosition : 'top',
+     });
+ 
+     //For Preloader
+     $(window).on("load",function (){
+         $("#preloader").hide();
+     });
+ 
+ </script>
+ 

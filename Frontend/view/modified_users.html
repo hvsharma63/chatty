@@ -1,0 +1,334 @@
+<!-- 
+  file : modified_users.html
+  v1.0
+  Desc : Home page for logged in user
+  Developed By : Ishan Bhatt
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="google-signin-client_id" content="683735214920-pgk212ld6msk5mvh93lchj6rpcjulco0.apps.googleusercontent.com">
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Set favicon in tab -->
+  <link rel="icon" href="chatty.png">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="public/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="public/dist/css/skins/_all-skins.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="public/css/style.css">
+
+  <title>Chatty</title>
+</head>
+
+<body class="hold-transition skin-blue fixed sidebar-mini" user_id="0">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>CY</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Chatty</b></span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <p class="nav-custom-title">Home</p>
+
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" id="req_notification">
+                <i class="fa fa-bell-o"  style="font-size:20px;"></i>
+                <span class="label label-warning" id="notification-count"></span>
+              </a>
+            </li>
+
+            <li class="dropdown notifications-menu create-group">
+                <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-default" id="create-group" title="Create Group">
+                    <i class="fa fa-plus-circle plus" style="font-size:20px;"></i>
+                </a>
+            </li>
+
+            <div class="modal fade" id="modal-default">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form method="POST">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title" style="text-align:center;"><b>Create Group</b></h4>
+                      
+                      <input type="text" name="grpName" id="grpName" class="grpName" placeholder="Enter Group Name" />
+                      <!-- <input type="file" name="grpImg" id="grpImg" class="custom-file-input grpImg"> -->
+                      <p class="error"></p>
+                    </div>
+                    <div class="modal-body friendsForGroup">
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                      <button type="button" id="save-group" class="btn btn-primary" >Create</button>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="" class="user-image" id="user_img1" alt="User Image">
+                <span class="hidden-xs logged-in-user"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="" id="user_img2" class="img-circle" alt="User Image">
+
+                  <p class="logged-in-user"></p>
+                </li>
+                <!-- Menu Body -->
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="/userProfile" class="btn btn-default btn-flat" id="user_profile">Profile</a>
+                  </div>
+                  <div class="pull-right">        
+                    <a href="#" class="btn btn-default btn-flat logout">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="" class="img-circle" id="user_img3" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p class="logged-in-user"></p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li class="header"></li>
+
+          <li class="showChat">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> 
+              <span>Chats</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </aside> <!-- /Sidebar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content-header custom-content-header">
+        <h1 class="header-title" style="color:black; font-family: 'Source Sans Pro',sans-serif; margin-top: 10px;">All Users</h1>
+      </section>
+      
+      <section class="content">
+        <i class="fa fa-arrow-circle-left backHome"></i>
+        <div>
+            <span id="ip"></span>
+            <input type="text" class="form-control searchALlUser" style="width:30%;" placeholder="Search User...">
+            <div class="wrapper1">
+                <div class="loader-1 center"><span></span></div>  
+            </div>
+            <ul class="mychats" id="target">        
+            </ul>
+        </div>
+      
+        <div class="showChatOption">    
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link" id="nav-profile-tab" class="getFd" data-toggle="tab" href="#menu1">Friends</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="get-groups" data-toggle="tab" href="#menu2">Groups</a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="menu1" class="container tab-pane active"><br>
+              <div id="myFriends">
+                <input type="text" class="form-control searchFrined" style="width:30%;" placeholder="Search User...">
+                <ul class="myFriendsList" id="chatTarget" >        
+                </ul>
+            </div>
+            </div>
+            <div id="menu2" class="container tab-pane fade"><br>
+              <input type="text" class="form-control searchGroups" style="width:30%;" placeholder="Search Groups...">
+            </div>
+          </div>
+      </div> 
+    </section>
+  </div><!-- /.Content Wrapper. Contains page content -->
+  <!-- ./wrapper -->
+
+  
+  <!-- Google platform.js -->
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- jQuery File -->
+  <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="public/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- Sweetalerts -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Socket -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Emoji JS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.js"></script>
+  <!-- AdminLTE App -->
+  <script src="public/dist/js/adminlte.min.js"></script>
+  <!-- Connection JS -->
+  <script src="public/js/connection.js"></script>
+  <!-- Custom JS -->
+  <script src="public/js/custom-ajax.js"></script>
+  <!-- main JS -->
+  <script src="public/js/main.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="public/dist/js/demo.js"></script>
+</body>
+</html>
+
+<script>
+  function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
+    //compatibility for firefox and chrome
+    var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+    var pc = new myPeerConnection({
+        iceServers: []
+    }),
+    noop = function() {},
+    localIPs = {},
+    ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
+    key;
+
+    function iterateIP(ip) {
+        if (!localIPs[ip]) onNewIP(ip);
+        localIPs[ip] = true;
+    }
+
+     //create a bogus data channel
+    pc.createDataChannel("");
+
+    // create offer and set local description
+    pc.createOffer(function(sdp) {
+        sdp.sdp.split('\n').forEach(function(line) {
+            if (line.indexOf('candidate') < 0) return;
+            line.match(ipRegex).forEach(iterateIP);
+        });
+        
+        pc.setLocalDescription(sdp, noop, noop);
+    }, noop); 
+
+    //listen for candidate events
+    pc.onicecandidate = function(ice) {
+        if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
+        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+    };
+  }
+
+  // Usage
+  getUserIP(function(ip){
+      document.getElementById("ip").innerHTML = 'Got your IP ! : '  + ip;
+  });
+
+
+  $(function(){
+    var grpName = localStorage.getItem('groupName');
+    var grpName = {
+        grpName : grpName
+    };
+    
+    $.ajax({
+      async: true,
+      crossDomain: true,
+      method : "POST",
+      url : url+"updateGroupOfflineStatus",
+      "headers": {
+        "authorization": token,
+        "cache-control": "no-cache",               
+      },
+      contentType : "application/JSON",
+      data : JSON.stringify(grpName)
+    }).done(function(res){
+    }).fail(function(e, s, t){
+      console.log("Error : " +e);
+    });
+
+    $('.wrapper1').show();
+    $.ajax({
+      async: true,
+      crossDomain: true,
+      type:"GET",
+      url:url+"getAllUser",
+      "headers": {
+        "authorization": token,
+      /*  "Content-Type": "application/x-www-form-urlencoded", */
+        "cache-control": "no-cache",
+        
+      },
+      contentType: 'application/JSON',
+      }).done(function(res){   
+
+        $('.wrapper1').hide();
+          if(res.length > 0){
+            var m=0, n=0, notFriends;   
+            
+            //Main for loop
+            for (m = 0; m < res.length; m++) {
+              
+                //Shwoing in tab
+                notFriends = '<li class="userName" style="list-style:none; padding-top:20px; padding-bootom:20px; margin-left:-40px;" id="x'+m+'"><input type="hidden" value="'+res[m]._id+'"><div class="row custom-row"><div class="img_cont"><img src="'+res[m].img_upload+'" class="rounded-circle user_img"></div><div class="user_info" style="margin-left:120px;"><span class="hy" id="x'+m+'">'+res[m].username+'</span><div id="req_sent_status" style="float:right;"><button class="btn btn-primary send-req-btn">Send Request</button></div></div></div></li>';
+                
+                $(".mychats").append(notFriends);
+            }
+          } else {
+            var empty = '<li class="" style="list-style:none;"><div class="row custom-row"><div class="user_info"><span>No New Users</span></div></div></li>';
+                
+            $(".mychats").append(empty);
+          }  
+          
+      }).fail(function(e, s, t){ 
+      });
+  });
+</script>

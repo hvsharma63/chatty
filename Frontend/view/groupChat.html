@@ -1,0 +1,489 @@
+<!-- 
+  File : groupChat.html
+  v1.0
+  Desc : Group chat screen file
+  Developed By : Ishan Bhatt
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Set favicon in tab -->
+  <link rel="icon" href="chatty.png">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="public/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="public/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="public/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Toast Alert CSS -->
+  <link rel="stylesheet" href="public/toast-alert/css/mk-notifications.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="public/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="public/dist/css/skins/_all-skins.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- New Emoji Picker CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.css">
+  <!-- Twemoji js -->
+  <script src="https://twemoji.maxcdn.com/2/twemoji.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="public/css/style.css">
+
+
+  <title>Chatty</title>
+</head>
+<body class="hold-transition skin-blue fixed sidebar-mini" user_id="0" style="overflow-y:hidden;">
+
+<!-- Site wrapper -->
+  <div class="wrapper">
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="http://localhost:3000/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>CY</b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>Chatty</b></span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <!-- Notifications: style can be found in dropdown.less -->
+            <li class="dropdown notifications-menu">
+              <a href="#" class="dropdown-toggle" id="req_notification" data-toggle="dropdown">
+                <i class="fa fa-bell-o"></i>
+                <span class="label label-warning" id="notification-count"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="header"></li>
+                <li>
+                  <!-- inner menu: contains the actual data -->
+                  <ul class="menu" id="notification_menu">
+                  </ul>
+                </li>
+                <li class="footer"><a href="#">View all</a></li>
+              </ul>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="" class="user-image" id="user_img1" alt="User Image">
+                <span class="hidden-xs logged-in-user"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <!-- User image -->
+                <li class="user-header">
+                  <img src="" id="user_img2" class="img-circle" alt="User Image">
+
+                  <p class="logged-in-user"></p>
+                </li>
+                <!-- Menu Body -->
+                
+                <!-- Menu Footer-->
+                <li class="user-footer">
+                  <div class="pull-left">
+                    <a href="/userProfile" class="btn btn-default btn-flat">Profile</a>
+                  </div>
+                  <div class="pull-right">
+                    <a href="/logout" class="btn btn-default btn-flat logout">Sign out</a>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =============================================== -->
+
+    <!-- Sidebar -->
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="" class="img-circle" id="user_img3" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p class="logged-in-user"></p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">MAIN NAVIGATION</li>
+          <li class="" style="cursor:pointer;">
+            <a href="/users">
+              <i class="fa fa-dashboard"></i> 
+              <span>Dashboard</span>
+            </a>
+          </li>
+
+          <li class="leaveGroup" style="cursor:pointer;">
+            <a>
+              <i class="fa fa-sign-out"></i> 
+              <span>Leave Group</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+    </aside> <!-- /Sidebar -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <section class="content custom-content">
+        <div class="">
+           <div class="row">    
+              <!-- DIRECT CHAT -->
+              <div class="box box-warning direct-chat direct-chat-warning chat-custom-box">
+                <div class="user-panel" style="margin-top:10px;">
+                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 image">
+                    <img src="" class="img-circle" id="grpImg" alt="User Image" style="float:left;">
+                    <p class="groupName" style="font-size:20px; margin-left: 75px;"></p>
+                    <p class="grpMembers" style="margin-left: 75px; color:#3a403de0"></p>
+                  </div>
+
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" >
+                    <li class="dropdown notifications-menu create-group" style="list-style:none">
+                      <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modal-default" id="create-group" title="Add Members">
+                          <i class="fa fa-plus-circle plus" style="font-size:30px;"></i>
+                      </a>
+                    </li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal-default">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <form method="POST">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" style="text-align:center;"><b>Add Members</b></h4>
+                              <p class="error"></p>
+                            </div>
+                            <div class="modal-body friendsForGroup">
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                              <button type="button" id="add-members" class="btn btn-primary" >Add</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>  
+                    </div><!-- Modal -->
+                  </div>
+
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >
+                    <li class="dropdown notifications-menu remove-members" style="list-style:none">
+                      <!-- <button href="#" class="dropdown-toggle btn btn-danger remove-btn" data-toggle="modal" data-target="#remove-members" id="create-group" title="Add Members" disabled>Remove Members</button> -->
+                      <a href="/groupSetting">
+                        <i class="fa fa-gears" style="font-size: 25px;"></i>
+                      </a>
+                      
+                    </li>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="remove-members">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <form method="POST">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                              <h4 class="modal-title" style="text-align:center;"><b>Remove Members</b></h4>
+                            </div>
+                            <div class="modal-body">
+                              <div class="removeGroupMember"></div>
+                              </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                              <button type="button" id="removeMultiMem" class="btn btn-primary" >Remove</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>  
+                    </div><!-- Modal -->
+                  </div>
+
+                 
+                  <!-- <button href="#" class="dropdown-toggle btn btn-danger remove-btn" data-toggle="modal" data-target="#remove-members" id="create-group" title="Add Members" disabled>Remove Members</button> -->
+                  <a class="videoCall" href="/videoCall" target="_blank" >
+                    <i class="fa fa-video-camera video-call-icon"></i>
+                  </a>
+                   
+                </div>
+
+                <!-- /.box-header -->
+                <div class="box-body">
+                  <!-- Conversations are loaded here -->
+                  <div class="direct-chat-messages grp-chat-height">
+                      <div class="wrapper1" style="margin-top:0px;">
+                          <div class="loader-1 center"><span></span></div>  
+                      </div>
+                  </div>
+                  <!--/.direct-chat-messages-->
+                </div>
+                  <!-- /.box-body -->
+                  <div class="box-footer">
+                    <div class="input-box">
+                      <input type="text" id="emojionearea1" class="form-control grpMessage" placeholder="Type a message..." />
+                      <input type="file" name="img" id="send_grp_file" style="display: none;" multiple >
+                      <div class="icon"><i id="microphone" class="fa fa-paperclip attachment" aria-hidden="true"></i></div>
+                      <button type="button" class="btn btn-warning btn-flat" id="sendGrpMessage">Send</button>  
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </section>
+      </div>
+    </div> <!-- /.content-wrapper -->
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery 3 -->
+  <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap 3.3.7 -->
+  <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="public/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="public/bower_components/fastclick/lib/fastclick.js"></script>
+  <!-- Sweetalerts -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Toast Alert -->
+  <script src="public/toast-alert/js/mk-notifications.min.js"></script>
+  <!-- Socket -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- New Emoji JS -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.js"></script>
+  <!-- AdminLTE App -->
+  <script src="public/dist/js/adminlte.min.js"></script>
+  <!-- Connection JS -->
+  <script src="public/js/connection.js"></script>
+  <!-- Socket -->
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- Custom JS -->
+  <script src="public/js/custom-ajax.js"></script>
+  <!-- main JS -->
+  <script src="public//js/main.js"></script>
+</body>
+</html>
+
+<script>
+  $(function(){
+    $('.icon').click(function(event){
+        $("#send_grp_file").click();      
+    });
+
+    var x = 0;
+    $("#notification-count").html(x);
+
+    var loggedUserName = localStorage.getItem('loggedUserName');
+    var loggedUserId = localStorage.getItem('loggedUserId');
+    var loggedUserImg = localStorage.getItem('loggedUserImg');
+    var grpName = localStorage.getItem('groupName');
+    var grpImage = localStorage.getItem('groupImage');
+    var token = localStorage.getItem('token');
+
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct','Nov','Dec'];
+
+    var imgSrc = loggedUserImg;
+    $("#user_img1").attr("src", imgSrc);
+    $("#user_img2").attr("src", imgSrc);
+    $("#user_img3").attr("src", imgSrc);
+    $('.logged-in-user').html(loggedUserName);
+    $(".groupName").html(grpName);
+    $("#grpImg").attr("src",grpImage);
+
+    var grpName = {
+        grpName : grpName
+    };
+
+    //Get group details
+    $.ajax({
+        async: true,
+        crossDomain: true,
+        method : "POST",
+        url : url+"getGroupDetails",
+        "headers": {
+          "authorization": token,
+          "cache-control": "no-cache",               
+        },
+        contentType : "application/JSON",
+        data : JSON.stringify(grpName)
+    }).done(function(res){
+      $(".wrapper1").hide();
+      var meme = [];
+      for(var i=0; i< res.group_members.length; i++){
+        //Check for admin
+        if(res.group_members[i].admin == 1){
+          var admin = res.group_members[i].members;
+          if(admin == loggedUserName){
+            $('.remove-btn').attr("disabled", false);
+          }
+        }
+        meme.push(res.group_members[i].members);
+        if(i == res.group_members.length-1){
+            $(".grpMembers").append(res.group_members[i].members);    
+        } else{
+            $(".grpMembers").append(res.group_members[i].members+ ',');
+        }
+      }
+      localStorage.setItem('groupMembers', meme);
+    }).fail(function(e, s, t){ 
+    });
+
+    //Update group member as active member on group
+    $.ajax({
+      async: true,
+      crossDomain: true,
+      method : "POST",
+      url : url+"updateGroupOnlieeStatus",
+      "headers": {
+        "authorization": token,
+        "cache-control": "no-cache",               
+      },
+      contentType : "application/JSON",
+      data : JSON.stringify(grpName)
+    }).done(function(res){
+    }).fail(function(e, s, t){
+      console.log("Error : " +e);
+    });
+    
+    //Get Group Chat History
+    $.ajax({
+      async: true,
+      crossDomain: true,
+      method : "POST",
+      url : url+"getGroupChatHistory",
+      "headers": {
+        "authorization": token,
+        "cache-control": "no-cache",               
+      },
+      contentType : "application/JSON",
+      data : JSON.stringify(grpName) 
+    }).done(function(res){
+      myDate = new Date();
+      monthDigit = myDate.getMonth();
+      currentDate = ('0' + myDate.getDate()).slice(-2);
+      currentMonth = months[monthDigit];
+      currentHours = ('0' + myDate.getHours()).slice(- 2);
+      currentMin = ('0' + myDate.getMinutes()).slice(-2);
+      var groupName = localStorage.getItem('groupName');
+      for(var i=0; i<res.length; i++){
+        if( res[i].fromUser == loggedUserName ){
+          if(res[i].image == null){
+            var grpFromUserMessage = '<div class="direct-chat-msg right fromUser"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-right">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text"><div class="row" style="margin-left:5px;"><span style="color:white; font-size:15px; font-weight:bold; font-family:Helvetica">You</span></div><div class="row" style="margin-left:5px;">'+res[i].message+'</div></div></div>';
+          
+            $('.direct-chat-messages').append(grpFromUserMessage);
+          } else{
+            var Extension = res[i].image.substring(res[i].image.lastIndexOf('.') + 1).toLowerCase();
+              if(Extension == 'mp4' || Extension == 'flv'|| Extension == 'avi'){
+                var grpMessageDiv = '<div class="direct-chat-msg right fromUser"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-right">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text" style="height:220px; width:220px;float:right; background-color:#f39c12;"><span style="color:white; font-size:15px; font-weight:bold; font-family:Helvetica">You</span><video src='+url+''+groupName+'/'+res[i].fromUser+'/sent/'+res[i].image+' height="180px" width ="200px" style="margin-top:10px; padding-bottom:10px;" controls></video></div></div>';
+
+                $('.direct-chat-messages').append(grpMessageDiv);
+              } if(Extension == 'pdf'){
+                  var grpMessageDiv = '<div class="direct-chat-msg right fromUser"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-right">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text" ><div class="row" style="margin-left:5px;"><span style="color:white; font-size:15px; font-weight:bold; font-family:Helvetica">You</span></div class="row"><div class="row" style="margin-left:5px;"><i class="fa  fa-file-pdf-o file-pdf" style=""><a href='+url+''+groupName+'/'+res[i].fromUser+'/sent/'+res[i].image+' target="_blank">'+res[i].image+'</a></i></div></div></div>';
+
+                  $('.direct-chat-messages').append(grpMessageDiv);
+              } else{
+                  var grpFromUserMessage = '<div class="direct-chat-msg right fromUser"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-right">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text" style="height:220px; width:220px;float:right; background-color:#f39c12;"><span style="color:white; font-size:15px; font-weight:bold; font-family:Helvetica">You</span><img src='+url+''+groupName+'/'+res[i].fromUser+'/sent/'+res[i].image+' height="180px" width ="200px" style="margin-top:10px; padding-bottom:10px;"></div></div>';
+                
+                  $('.direct-chat-messages').append(grpFromUserMessage);
+              }
+          }
+        } else{
+            if(res[i].image == null){
+              var grpMessageDiv = '<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text fromUserMessage"><div class="row" style="margin-left:5px;"><span style="color:black; font-size:15px; font-weight:bold; font-family:Helvetica">'+res[i].fromUser+'</span></div><div class="row" style="margin-left:5px;">'+res[i].message+'</div></div></div>';
+
+              $('.direct-chat-messages').append(grpMessageDiv);
+            } else{
+              var Extension = res[i].image.substring(res[i].image.lastIndexOf('.') + 1).toLowerCase();
+              if(Extension == 'mp4' || Extension == 'flv'|| Extension == 'avi'){
+                var grpMessageDiv = '<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text" style="height:220px; width:220px;;background-color:#d2d6de;"><span style="color:black; font-size:15px; font-weight:bold; font-family:Helvetica">'+res[i].fromUser+'</span><div class="overlay-container" style="height:180px; width:200px; max-width:200px;"><video src='+url+''+groupName+'/'+res[i].fromUser+'/sent/'+res[i].image+' height="180px" width ="200px" style="margin-top:10px; padding-bottom:10px;" controls></video><div class="overlay"><p class="downloadImg">Download<p></div></div></div></div>';
+
+                $('.direct-chat-messages').append(grpMessageDiv);
+              } if(Extension == 'pdf'){
+                  var grpMessageDiv = '<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text" ><div class="row" style="margin-left:5px;"><span style="color:black; font-size:15px; font-weight:bold; font-family:Helvetica">'+res[i].fromUser+'</span></div><div class="row" style="margin-left:5px;"><i class="fa  fa-file-pdf-o file-pdf"><a href='+url+''+groupName+'/'+res[i].fromUser+'/sent/'+res[i].image+' target="_blank" style="color:black;">'+res[i].image+'</a></i><i class="fa fa-download pull-right pdf-download" style="padding-right:15px;"></i></div></div></div>';
+
+                  $('.direct-chat-messages').append(grpMessageDiv);
+              } else{
+                  var grpMessageDiv = '<div class="direct-chat-msg"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp pull-left">'+currentDate+ " " +currentMonth+ " " +currentHours+ ":" +currentMin+'</span></div><div class="direct-chat-text" style="height:220px; width:220px;;background-color:#d2d6de;"><span style="color:black; font-size:15px; font-weight:bold; font-family:Helvetica">'+res[i].fromUser+'</span><div class="overlay-container" style="height:180px; width:200px; max-width:200px;"><img src='+url+''+groupName+'/'+res[i].fromUser+'/sent/'+res[i].image+' height="180px" width ="200px" style="margin-top:10px; padding-bottom:10px;"><div class="overlay"><p class="downloadImg">Download<p></div></div></div></div>';
+
+                  $('.direct-chat-messages').append(grpMessageDiv);
+              }
+            }
+        }
+      }
+    }).fail(function(e, s, t){
+    });
+
+    //Read All messages
+    $.ajax({
+      async: true,
+      crossDomain: true,
+      method : "POST",
+      url : url+"readChat",
+      "headers": {
+        "authorization": token,
+        "cache-control": "no-cache",               
+      },
+      contentType : "application/JSON",
+      data : JSON.stringify(grpName)
+    }).done(function(res){   
+    }).fail(function(e, s, t){
+    });
+
+    //To download image from group chat
+    $(document).on("click",".downloadImg", function(){
+      var imgagePath = $(this).parent().parent().find('img').attr('src');
+      console.log(imgagePath);
+      var imageData = {
+        imgagePath : imgagePath
+      };
+
+      var file_path = imgagePath;
+      var a = document.createElement('A');
+      a.href = file_path;
+      a.download = file_path.substr(file_path.lastIndexOf('/') + 1);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+
+    //Download PDFs
+    $(document).on("click", ".pdf-download", function(){
+      var imgagePath = $(this).prev().find('a').attr('href');
+      console.log(imgagePath);
+      var imageData = {
+        imgagePath : imgagePath
+      };
+
+      var file_path = imgagePath;
+      var a = document.createElement('A');
+      a.href = file_path;
+      a.download = file_path.substr(file_path.lastIndexOf('/') + 1);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    });
+  });
+</script>

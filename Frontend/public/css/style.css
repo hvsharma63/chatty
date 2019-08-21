@@ -1,0 +1,622 @@
+/* 
+  File : style.css
+  v1.0
+  Desc : custom css file for system 
+  Developed By : Ishan Bhatt
+*/
+
+/* Fix user-agent */
+@import url('https://fonts.googleapis.com/css?family=Assistant');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+html, input {
+  font-family:
+  "HelveticaNeue-Light",
+  "Helvetica Neue Light",
+  "Helvetica Neue",
+  Helvetica,
+  Arial,
+  "Lucida Grande",
+  sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Assistant', sans-serif;;
+}
+
+ul {
+  list-style: none;
+  word-wrap: break-word;
+}
+
+/* Default Login Button */
+#loginButton{
+  margin: 0 auto !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Google custom button */
+#googlesignin{
+  
+}
+.g-signin2{
+  width: 100%;
+}
+
+.g-signin2 > div{
+  margin: 0 auto;
+}
+
+/* Chat page */
+.chat.page {
+  display: none;
+}
+
+/* Font */
+
+.messages {
+  font-size: 150%;
+}
+
+.inputMessage {
+  font-size: 100%;
+}
+
+.log {
+  color: gray;
+  font-size: 70%;
+  margin: 5px;
+  text-align: center;
+}
+
+.type_msg:focus{
+ box-shadow:none !important;
+ outline:0px !important;
+}
+
+.user_img{
+  height: 60px;
+  width: 60px;
+  border:1.5px solid #f5f6fa;
+  border-radius: 50%;
+}
+
+.user_img_msg{
+  height: 40px;
+  width: 40px;
+  border:1.5px solid #f5f6fa;
+}
+
+.online_icon{
+  position: absolute;
+  height: 15px;
+  width:15px;
+  background-color: #4cd137;
+  border-radius: 50%;
+  bottom: 0.2em;
+  right: 0.4em;
+  border:1.5px solid white;
+}
+
+.offline{
+  background-color: #c23616 !important;
+}
+
+.user_info{
+  margin-top: 12px;
+  margin-bottom: auto;
+  margin-left: 20px;
+}
+
+.user_info span{
+  font-size: 20px;
+  margin-left: -20px;
+  color: #1e1e1ed4;
+}
+
+.mychats{
+  display: block;
+  font-size: 20px;
+  animation: fadein 1s;
+}
+
+.mychats li{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.img_cont{
+  float: left;
+}
+
+
+/* For new tabbing */
+h1 {
+  font-size: 40px;
+  line-height: 0.8em;
+  color: rgba(255,255,255,0.2);
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none; 
+}
+
+.backHome{
+  display: none;
+  font-size: 30px;
+  transition: 5s;
+  animation: fadein 0.5s;
+  color: #3c8dbc;
+}
+
+.nav-custom-title{
+  float: left;
+  font-size: 25px;
+  margin-top: 6px;
+  color: white;
+}
+
+.custom-content-header{
+  margin-top: 5px;
+}
+
+.showChatOption{
+  margin-top: 40px;
+  display: none;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.requster-name{
+  font-size: 20px;
+}
+
+.requester-li{
+  width: 100%;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+
+.custom-row{
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+
+/* User private chat */
+.custom-content{
+  margin-top: -15px !important;
+  padding: 15px !important;
+}
+
+.direct-chat-messages{
+  height: 480px;
+  overflow-x: hidden !important;
+}
+
+.grp-chat-height{
+  height: 450px;
+  overflow-x: hidden !important;
+}
+
+.chat-custom-box{
+  margin-bottom: -20px;
+}
+
+.direct-chat-text{
+  margin: 0 !important;
+}
+
+/* Donwload Image overlay */
+.overlay-container {
+  position: relative;
+  width: 50%;
+  height: 0%;
+  max-width: 150px;
+}
+
+.image {
+  display: block;
+}
+
+.overlay {
+  position: absolute; 
+  bottom: 0; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #837676; 
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 2px;
+  text-align: center;
+}
+
+.overlay p {
+  text-align: center;
+  color: black;
+}
+
+.overlay p:hover {
+  cursor: pointer;
+}
+
+.overlay-container:hover .overlay {
+  opacity: 1;
+}
+
+.myFriendsList li{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+/* Chat input box  */
+.input-box {
+  display: flex;
+}
+.input-box input {
+  background: transparent;
+  flex: 15;
+  cursor: text;
+  vertical-align: middle;
+  transition: 1s;
+}
+
+.input-box input:focus {
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+/* Video Call Icon */
+.video-call-icon{
+  cursor: pointer; 
+  float: right; 
+  margin-top: -35px;
+  font-size: 20px;
+}
+
+/* botton-icon */
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  width: 10%;
+  cursor: pointer;
+  color: #3c4a4f;
+  padding: 15px 5px;
+}
+
+.icon:hover {
+    background:#d5dfef;
+}
+
+#send {
+  color: #16afe0 !important;
+}
+
+.modal-backdrop{
+  z-index: 0 !important;
+}
+
+.round {
+  position: relative;
+}
+
+.round label {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 28px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 28px;
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 6px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  top: 8px;
+  transform: rotate(-45deg);
+  width: 12px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #66bb6a;
+  border-color: #66bb6a;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+.grpName{
+  border-radius: 5px;
+  border: 1px solid;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.grpName::placeholder{
+  text-align: center;
+}
+
+.grpImg{
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+}
+
+/* Custom File Input */
+.custom-file-input {
+  color: transparent;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Choose Group Icon';
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  background: #3c8dbc;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.custom-file-input:active::before {
+  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+}
+
+.getGrpData{
+  margin-left: 30px;
+  margin-right: 30px;
+  list-style: none;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: auto;
+}
+
+#nav-contact li{
+  border-bottom: 1px solid #aeb9ef;
+}
+
+.getGrpData span{
+  color: #1e1e1ed4;
+  margin-left: 50px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+  color: white;
+  cursor: pointer;
+  background-color: #3c8dbc;
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #ddd;
+}
+
+.nav-tabs>li{
+  font-size: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.nav-tabs>li>a{
+  color: black;
+}
+
+/* Customize File input button */
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.custom-file-btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 0px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 30px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+/* Image update modal */
+label.cabinet{
+  display: block;
+  cursor: pointer;
+}
+
+label.cabinet input.file{
+  position: relative;
+  height: 100%;
+  width: auto;
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+  margin-top:-30px;
+}
+
+#upload-demo{
+  width: 250px;
+  height: 250px;
+  padding-bottom:25px;
+}
+figure figcaption {
+    position: absolute;
+    bottom: 0;
+    color: #fff;
+    width: 100%;
+    padding-left: 9px;
+    padding-bottom: 5px;
+    text-shadow: 0 0 10px #000;
+}
+
+/* Loader */
+.loader-1 {
+	height: 32px;
+	width: 32px;
+	-webkit-animation: loader-1-1 4.8s linear infinite;
+	        animation: loader-1-1 4.8s linear infinite;
+}
+@-webkit-keyframes loader-1-1 {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes loader-1-1 {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+.loader-1 span {
+	display: block;
+	position: absolute;
+	top: 0; left: 50%;
+	bottom: 0; right: 0;
+	margin: auto;
+	height: 32px;
+	width: 32px;
+	clip: rect(0, 32px, 32px, 16px);
+	-webkit-animation: loader-1-2 1.2s linear infinite;
+	        animation: loader-1-2 1.2s linear infinite;
+}
+@-webkit-keyframes loader-1-2 {
+	0%   { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(220deg); }
+}
+@keyframes loader-1-2 {
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(220deg); }
+}
+.loader-1 span::after {
+	content: "";
+	position: absolute;
+	top: 0; left: 0;
+	bottom: 0; right: 0;
+	margin: auto;
+	height: 32px;
+	width: 32px;
+	clip: rect(0, 32px, 32px, 16px);
+	border: 3px solid black;
+	border-radius: 50%;
+	-webkit-animation: loader-1-3 1.2s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+	        animation: loader-1-3 1.2s cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+}
+@-webkit-keyframes loader-1-3 {
+	0%   { -webkit-transform: rotate(-140deg); }
+	50%  { -webkit-transform: rotate(-160deg); }
+	100% { -webkit-transform: rotate(140deg); }
+}
+@keyframes loader-1-3 {
+	0%   { transform: rotate(-140deg); }
+	50%  { transform: rotate(-160deg); }
+	100% { transform: rotate(140deg); }
+}
+
+.center {
+	display: block;
+	position: absolute;
+	top: 0; left: 0;
+	bottom: 0; right: 0;
+	margin: auto;
+}
+.wrapper1 {
+	position: relative;
+	width: 100%;
+	max-width: 1000px;
+	height: 100%;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+/* Group Image */
+.profile-group-img{
+  margin: 0 auto;
+    width: 100px;
+    padding: 3px;
+    border: 3px solid #d2d6de;
+}
+
+/* PDF styles */
+.file-pdf{
+  margin-top: 7px;
+  font-size:15px;
+  transition: 0.5s ease;
+}
+
+.file-pdf a{
+  padding-left:10px; 
+  text-decoration:none; 
+  color:white; 
+  font-family:Helvetica;
+  transition: 0.5s ease;
+}
+
+.file-pdf:hover a{
+  color:black;
+  cursor : pointer;
+  font-size: 16px;
+}
+
+.pdf-download{
+  cursor: pointer;
+}

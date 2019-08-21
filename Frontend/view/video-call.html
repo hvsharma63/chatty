@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Video Call</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link href="public/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Streaming Local video -->  
+    <video class="localVideo" playsinline autoplay muted></video>
+    
+    <!-- Streaming Client Video -->
+    <div class="remoteVideos">
+      <div class="handup-wrapper">
+        <div class="onHold">
+          <p style="color:white;"></p>
+        </div>
+        <div class="hangup-wrapper">
+          <i class="fas fa-phone-slash" id="hangUp"></i>
+        </div>
+        <div class="hold-wrapper">
+          <i class="fas fa-video-slash holdCall"></i>  
+        </div>
+        <div class="mute-wrapper">
+          <i class="fas fa-microphone-slash muteCall"></i>
+        </div>
+      </div>
+    </div><!-- /Streaming Client video -->
+    
+    <!-- jQuery -->
+    <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Emojiarena -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.1/emojionearea.js"></script>
+    <!-- Sweetalerts -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- URL connection -->
+    <script src="public/js/connection.js"></script>
+    <!-- socket js -->
+    <script src='/socket.io/socket.io.js'></script>
+    <!-- Main js -->
+    <script src="public/js/main.js"></script>
+</body>
+</html>
+
+<script>
+  function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82 || (e.which || e.keyCode) == 16 || (e.which || e.keyCode) == 17) e.preventDefault(); };
+
+  $(document).ready(function(){
+      $(document).on("keydown", disableF5);
+  });
+
+
+  
+
+  window.onbeforeunload = function(e){
+    alert("Hyy");
+    e.preventDefault()
+  };
+</script>

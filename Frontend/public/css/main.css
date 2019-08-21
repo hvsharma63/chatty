@@ -1,0 +1,140 @@
+
+html {
+	overflow: hidden;
+	height: 100%;
+}
+.one video {
+	object-fit: cover;
+}
+.localVideo {
+	width: 20%;
+	position: absolute;
+	z-index: 2;
+	bottom: 10px;
+	left: 10px;
+	display: block;
+}
+
+.remoteVideos {
+	width: 50%;
+	height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	display: flex;
+}
+.remoteVideos video {
+	flex-grow: 1;
+	flex-shrink: 1;
+	min-width: 0px;
+	min-height: 0px;
+}
+
+body {
+  	background-color: black;
+  	margin: 0;
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.onHold{
+	position: absolute;
+	z-index: 10;
+	opacity: 1;
+	bottom: 10px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	display: none;
+}
+
+.hangup-wrapper{
+	position: absolute;
+	z-index: 20;
+	opacity: 2;
+	width: 40px;
+	height: 40px;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: white;
+	border-radius: 50px;
+}
+
+#hangUp {
+	font-size: 20px;
+	position: absolute;
+	z-index: 10;
+	opacity: 1;
+	bottom: 11px;
+	left: 17%;
+	transition: 0.3s ease;
+}
+
+.hold-wrapper{
+	position: absolute;
+	z-index: 20;
+	opacity: 2;
+	width: 40px;
+	height: 40px;
+	bottom: 10px;
+	left: 60%;
+	transform: translateX(-60%);
+	background-color: white;
+	border-radius: 50px;
+}
+
+.holdCall{
+	font-size: 20px;
+	position: absolute;
+	z-index: 10;
+	opacity: 1;
+	bottom: 11px;
+	left: 17%;
+	transition: 0.3s ease;
+}
+
+.mute-wrapper{
+	position: absolute;
+	z-index: 20;
+	opacity: 2;
+	width: 40px;
+	height: 40px;
+	bottom: 10px;
+	left: 70%;
+	transform: translateX(-70%);
+	display: block;
+	background-color: white;
+	border-radius: 50px;
+}
+
+.muteCall{
+	font-size: 20px;
+	position: absolute;
+	z-index: 10;
+	opacity: 1;
+	bottom: 11px;
+	left: 17%;
+	display: block;
+	transition: 0.3s ease;
+}
+
+.hangup-wrapper:hover #hangUp{
+	font-size: 22px;
+}
+
+.hold-wrapper:hover .holdCall{
+	font-size: 22px;
+}
+
+.mute-wrapper:hover .muteCall{
+	font-size: 22px;
+}
+
+
