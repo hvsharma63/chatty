@@ -321,7 +321,11 @@
   // Start upload preview image
   var image = localStorage.getItem("groupImage");
   $(".gambar").attr("src", image);
-  $('.profile-group-img').attr('src',image);
+  if(image == null || image== undefined) {
+    $('.profile-group-img').attr('src',url+'grpImage.png');
+    } else {
+      $('.profile-group-img').attr('src',image);
+    }
   var uploadCrop,resp,tempFilename,rawImg,imageId;
 
   function readFile(input) {

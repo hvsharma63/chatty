@@ -23,12 +23,12 @@ app.use(cookieParser());
 
 //CORS
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000/");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-  req.header("Access-Control-Allow-Origin", "http://localhost:3000/");
+  req.header("Access-Control-Allow-Origin", "*");
   req.header('Access-Control-Allow-Credentials', 'true');
   next();
 });

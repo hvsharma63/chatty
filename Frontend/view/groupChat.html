@@ -311,7 +311,12 @@
     $("#user_img3").attr("src", imgSrc);
     $('.logged-in-user').html(loggedUserName);
     $(".groupName").html(grpName);
-    $("#grpImg").attr("src",grpImage);
+
+    if(grpImage == null || grpImage== undefined) {
+      $("#grpImg").attr("src",url+'grpImage.png');
+    } else {
+      $("#grpImg").attr("src",grpImage);
+    }
 
     var grpName = {
         grpName : grpName

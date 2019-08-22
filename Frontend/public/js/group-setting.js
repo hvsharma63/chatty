@@ -8,13 +8,13 @@ $(function(){
     var grpNameObj = {
         grpName : localStorage.getItem('groupName')
     };
-
+    console.log("URL" , url);
     //Get Group Data
     $.ajax({
         async: true,
         crossDomain: true,
         type : "POST",
-        url : "http://localhost:3000/getGroupData",
+        url : url+"getGroupData",
         "headers": {
             "authorization": token,
             "cache-control": "no-cache",               
@@ -41,7 +41,7 @@ $(function(){
             async: true,
             crossDomain: true,
             type : "POST",
-            url : "http://localhost:3000/getMembersData",
+            url : url+"getMembersData",
             "headers": {
                 "authorization": token,
                 "cache-control": "no-cache",               
@@ -96,7 +96,7 @@ $(function(){
         var filename = filepath.replace(/^.*(\\|\/|\:)/, '');
 
         if(filename != ''){
-            localStorage.setItem('groupImage', 'http://localhost:3000/assets/'+filename);
+            localStorage.setItem('groupImage', url+'assets/'+filename);
         }
 
         //Obj
@@ -109,7 +109,7 @@ $(function(){
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:3000/updateGroupData',
+            url: url+'updateGroupData',
             "headers": {
                 "authorization": token,
                 "cache-control": "no-cache",               
@@ -119,7 +119,7 @@ $(function(){
             contentType : "application/JSON",
             "processData": false,
         }).done(function(res){
-            $('.profile-group-img').attr('src', 'http://localhost:3000/assets/'+filename);
+            $('.profile-group-img').attr('src', url+'assets/'+filename);
         }).fail(function(e, s, t){
             console.log(e);
         });
